@@ -4,7 +4,7 @@
 
 This depends on a type system such as: https://github.com/sirisian/ecmascript-types and supports a https://github.com/sirisian/ecmascript-static-constructor as defined there.
 
-This uses a public as the default for class member since specifying public isn't necessary and introduces a new keyword for little benefit.
+This uses a public as the default for class members since specifying public isn't necessary and introduces a new keyword for little benefit.
 
 ## Rationale
 
