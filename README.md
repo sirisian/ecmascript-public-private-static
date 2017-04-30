@@ -10,7 +10,7 @@ This uses a public as the default for class member since specifying public isn't
 
 See other languages that support public, private, and static syntax.
 
-One difference is that static members and methods act as shared members of their class meaning they can be accessed from any instance variable. They can also be accessed from the class itself.
+One difference is that static members and methods act as shared members of their class instances meaning they can be accessed from any instance variable. They can also be accessed from the class itself.
 
 ## Syntax
 
@@ -92,6 +92,7 @@ class Example2
 
 Example.y = 0; // identical to Example.constructor.y = 0;
 Example.z = 0; // identical to Example.constructor.z = 0;
+// Example.Example1(0, 0); // error Example1 is private
 Example.Example2(0, 0);
 
 let example = new Example(0, 0, 0, 0);
