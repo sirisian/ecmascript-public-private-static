@@ -10,7 +10,7 @@ This uses a public as the default for class member since specifying public isn't
 
 See other languages that support public, private, and static syntax.
 
-One small difference is that static members and methods act as shared members of their class meaning they can be accessed from any instance variable. They can also be accessed from the class itself.
+One difference is that static members and methods act as shared members of their class meaning they can be accessed from any instance variable. They can also be accessed from the class itself.
 
 ## Syntax
 
@@ -69,14 +69,32 @@ class Example
 		return this.Example3();
 	}
 	
+	Example5(example)
+	{
+		example.x = 5; // Without types it's impossible to know if x is private so this is allowed.
+	}
 	
+	Example6(example:Example)
+	{
+		example.x = 5; // With types this is the same class and in general languages allow this.
+	}
+	
+	Example7(example:Example2)
+	{
+		example.x = 5; // error x is private
+	}
+}
+
+class Example2
+{
+	private x;
 }
 
 Example.y = 0; // identical to Example.constructor.y = 0;
 Example.z = 0; // identical to Example.constructor.z = 0;
 Example.Example2(0, 0);
 
-let example = new Example(0, 0, 0, 0, 0);
+let example = new Example(0, 0, 0, 0);
 example.w = 0;
 example.x = 0;
 example.y = 0;
@@ -85,9 +103,12 @@ example.y = 0;
 example.Example2(0, 0);
 let x = example.X;
 example.X = 0;
-// example.Example3(); error Example3 is private
+// example.Example3(); // error Example3 is private
 example.Example4();
+example.Example5(example);
+example.Example6(example);
+let example2 = new Example2();
+example.Example5(example2);
+example.Example6(example2);
+// example.Example7(example2); // error x is private (in Example2)
 ```
-
-With types:
-
