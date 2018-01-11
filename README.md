@@ -10,7 +10,7 @@ See other languages that support public, private, and static syntax.
 
 ## Syntax
 
-One important difference in this proposal is that static members and methods can be accessed from any instance of the class and also using "this" inside of the class. What this means is whether a variable, say 'x', is public, private, or static inside of the class you access it like this.x. The only case where that isn't the case would be accessing public and private variables in a static method since those members are per instance.
+One important difference in this proposal is that static members and methods can be accessed from any instance of the class and also using "this" inside of the class. What this means is whether a variable, say 'x', is public, private, or static inside of the class you access it like this.x. The only case where that isn't the case would be attempting to access public and private variables in a static method since those members are per instance and thus don't exist in that context.
 
 (There's some parts mentioning types. They refer to this proposal: https://github.com/sirisian/ecmascript-types and are mostly notes on behavior with a type system).
 
