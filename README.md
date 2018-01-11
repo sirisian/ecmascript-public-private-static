@@ -2,17 +2,17 @@
 
 ## Introduction
 
-This depends on a type system such as: https://github.com/sirisian/ecmascript-types and supports a https://github.com/sirisian/ecmascript-static-constructor as defined there.
-
-This uses a public as the default for class members since specifying public isn't necessary and introduces a new keyword for little benefit.
+This uses a public as the default for class members since specifying public isn't necessary and would introduce a new keyword for little benefit.
 
 ## Rationale
 
 See other languages that support public, private, and static syntax.
 
-One difference is that static members and methods act as shared members of their class instances meaning they can be accessed from any instance variable. They can also be accessed from the class itself.
-
 ## Syntax
+
+One important difference in this proposal is that static members and methods can be accessed from any instance of the class and also using "this" inside of the class. What this means is whether a variable, say 'x', is public, private, or static inside of the class you access it like this.x. The only case where that isn't the case would be accessing public and private variables in a static method since those members are per instance.
+
+(There's some parts mentioning types. They refer to this proposal: https://github.com/sirisian/ecmascript-types and are mostly notes on behavior with a type system).
 
 ```js
 class Example
@@ -51,7 +51,7 @@ class Example
 	
 	get X()
 	{
-		return x;
+		return this.x;
 	}
 	
 	set X(x)
@@ -71,7 +71,7 @@ class Example
 	
 	Example5(example)
 	{
-		example.x = 5; // Without types it's impossible to know if x is private so this is allowed.
+		example.x = 5; // Without types is it possible to know if x is private?
 	}
 	
 	Example6(example:Example)
@@ -114,4 +114,4 @@ example.Example6(example2);
 // example.Example7(example2); // error x is private (in Example2)
 ```
 
-This brings up future features like friends and other concepts, but this is designed to be simple. It also wouldn't conflict with any proposed suggestions like that if they were added at a future time.
+This brings up future features like friends and other concepts, but this is designed to be simple.
